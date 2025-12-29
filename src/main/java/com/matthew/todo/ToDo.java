@@ -26,4 +26,7 @@ public class ToDo {
 
     @Column(nullable = false)
     boolean completed;
+
+    @ManyToOne
+    User user;
 }

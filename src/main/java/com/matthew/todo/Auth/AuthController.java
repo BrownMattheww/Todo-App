@@ -1,8 +1,8 @@
 package com.matthew.todo.Auth;
 
 
-import com.matthew.todo.User;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -16,7 +16,7 @@ public class AuthController {
     private final AuthService authService;
 
     @PostMapping("/signup")
-    public User signup(@RequestParam String username, @RequestParam String password){
-        return 
+    public ResponseEntity<AuthResponseDTO> signUp(@RequestParam String username, @RequestParam String password){
+        return authService.signUp(username,password);
     }
 }

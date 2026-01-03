@@ -11,6 +11,9 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.client.HttpStatusCodeException;
 import org.springframework.web.server.ResponseStatusException;
 
+import java.util.Objects;
+import java.util.Optional;
+
 @Service
 @RequiredArgsConstructor
 public class AuthService {
@@ -41,6 +44,24 @@ public class AuthService {
                 .build();
 
         return new ResponseEntity<>(response, HttpStatus.CREATED);
+    }
+
+    public ResponseEntity<AuthResponseDTO> logIn(String username, String password) {
+        User loggingIn = userRepository.findByUsername(username)
+                .orElseThrow(() -> new ResponseStatusException(HttpStatus.UNAUTHORIZED));
+
+        if(!passwordEncoder.matches(password, loggingIn.getPassword())){
+            throw new ResponseStatusException(HttpStatus.UNAUTHORIZED);
+        }
+
+        String token = jwtService.generateToken(loggingIn.getUsername());
+
+        AuthResponseDTO response = AuthResponseDTO.builder()
+                .username(loggingIn.getUsername())
+                .token(token)
+                .build();
+
+        return ResponseEntity.ok(response);
     }
 }
 

@@ -1,4 +1,4 @@
-package com.matthew.todo;
+package com.matthew.todo.Users;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;

@@ -1,7 +1,7 @@
 package com.matthew.todo.Auth;
 
-import com.matthew.todo.User;
-import com.matthew.todo.UserRepository;
+import com.matthew.todo.Users.User;
+import com.matthew.todo.Users.UserRepository;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;

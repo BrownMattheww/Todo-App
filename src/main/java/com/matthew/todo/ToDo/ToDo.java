@@ -1,5 +1,6 @@
-package com.matthew.todo;
+package com.matthew.todo.ToDo;
 
+import com.matthew.todo.Users.User;
 import jakarta.persistence.*;
 import lombok.*;
 

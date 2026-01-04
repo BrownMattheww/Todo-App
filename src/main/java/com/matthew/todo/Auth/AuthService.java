@@ -1,18 +1,13 @@
 package com.matthew.todo.Auth;
 
-import com.matthew.todo.User;
-import com.matthew.todo.UserRepository;
+import com.matthew.todo.Users.User;
+import com.matthew.todo.Users.UserRepository;
 import lombok.RequiredArgsConstructor;
-import org.apache.coyote.Response;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
-import org.springframework.web.client.HttpStatusCodeException;
 import org.springframework.web.server.ResponseStatusException;
-
-import java.util.Objects;
-import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor

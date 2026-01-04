@@ -15,4 +15,16 @@ public class ToDoService {
     public List<ToDo> getToDoByUser(User user){
         return toDoRepository.findByUser(user);
     }
+
+    public ToDo createToDo(ToDoRequest toDoRequest, User user){
+        ToDo todo = new ToDo();
+
+        todo.setTitle(toDoRequest.getTitle());
+        todo.setDescription(toDoRequest.getDescription());
+        todo.setCompleteBy(toDoRequest.getCompleteBy());
+        todo.setCompleted(false);
+        todo.setUser(user);
+
+        return toDoRepository.save(todo);
+    }
 }

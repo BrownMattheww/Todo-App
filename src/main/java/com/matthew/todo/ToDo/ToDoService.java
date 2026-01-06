@@ -4,6 +4,7 @@ import com.matthew.todo.Users.User;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Service
@@ -23,6 +24,7 @@ public class ToDoService {
         todo.setDescription(toDoRequest.getDescription());
         todo.setCompleteBy(toDoRequest.getCompleteBy());
         todo.setCompleted(false);
+        todo.setCreatedAt(LocalDateTime.now());
         todo.setUser(user);
 
         return toDoRepository.save(todo);

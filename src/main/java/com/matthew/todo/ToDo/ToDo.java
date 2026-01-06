@@ -25,6 +25,9 @@ public class ToDo {
     @Column(nullable = false)
     LocalDateTime completeBy;
 
+    @Column
+    LocalDateTime createdAt;
+
     @Column(nullable = false)
     boolean completed;
 

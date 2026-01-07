@@ -2,7 +2,9 @@ package com.matthew.todo.ToDo;
 
 import com.matthew.todo.Users.User;
 import com.matthew.todo.Users.UserRepository;
+import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
+import org.apache.coyote.Response;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -38,6 +40,12 @@ public class ToDoController {
         return ResponseEntity
                 .status(HttpStatus.CREATED)
                 .body(ToDoResponseMapper.from(todo));
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> deleteToDo(@PathVariable Long id) {
+        toDoService.deleteTodo(id);
+        return ResponseEntity.noContent().build();
     }
 
 }

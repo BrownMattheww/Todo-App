@@ -1,6 +1,7 @@
 package com.matthew.todo.ToDo;
 
 import com.matthew.todo.Users.User;
+import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -8,6 +9,7 @@ import java.time.LocalDateTime;
 import java.util.List;
 
 @Service
+@Transactional
 @RequiredArgsConstructor
 public class ToDoService {
 
@@ -28,5 +30,9 @@ public class ToDoService {
         todo.setUser(user);
 
         return toDoRepository.save(todo);
+    }
+
+    public void deleteTodo(Long id) {
+        toDoRepository.deleteById(id);
     }
 }

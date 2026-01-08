@@ -48,4 +48,10 @@ public class ToDoController {
         return ResponseEntity.noContent().build();
     }
 
+    @PutMapping("/{id}")
+    public ResponseEntity<ToDo> setCompleted(@PathVariable Long id){
+        ToDo updated = toDoService.setCompleted(id);
+        return ResponseEntity.ok(updated);
+    }
+
 }

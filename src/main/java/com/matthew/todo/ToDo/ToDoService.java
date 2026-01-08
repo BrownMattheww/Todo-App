@@ -3,7 +3,10 @@ package com.matthew.todo.ToDo;
 import com.matthew.todo.Users.User;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.ResponseStatus;
+import org.springframework.web.server.ResponseStatusException;
 
 import java.time.LocalDateTime;
 import java.util.List;
@@ -30,6 +33,14 @@ public class ToDoService {
         todo.setUser(user);
 
         return toDoRepository.save(todo);
+    }
+
+    public ToDo setCompleted(Long id){
+        ToDo toDo = toDoRepository.findById(id)
+                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "ToDo not found with id: " + id));
+
+        toDo.setCompleted(true);
+        return toDoRepository.save(toDo);
     }
 
     public void deleteTodo(Long id) {

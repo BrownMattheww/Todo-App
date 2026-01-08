@@ -8,6 +8,4 @@ import java.util.List;
 public interface ToDoRepository extends JpaRepository<ToDo, Long> {
 
     List<ToDo> findByUser(User user);
-
-    ToDo findById(Long id);
 }

@@ -1,6 +1,6 @@
 package com.matthew.todo.ToDo;
 
-import com.matthew.todo.Users.User;
+import com.matthew.todo.Users.Users;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -32,5 +32,5 @@ public class ToDo {
     boolean completed;
 
     @ManyToOne
-    User user;
+    Users user;
 }

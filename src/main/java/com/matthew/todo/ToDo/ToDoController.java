@@ -1,6 +1,6 @@
 package com.matthew.todo.ToDo;
 
-import com.matthew.todo.Users.User;
+import com.matthew.todo.Users.Users;
 import com.matthew.todo.Users.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -21,7 +21,7 @@ public class ToDoController {
     @GetMapping("/userToDo")
     public List<ToDo> getToDos(Principal principal){
         String username = principal.getName();
-        User user = userRepository.findByUsername(username)
+        Users user = userRepository.findByUsername(username)
                 .orElseThrow(() -> new RuntimeException("User not found"));
 
         return toDoService.getToDoByUser(user);
@@ -30,7 +30,7 @@ public class ToDoController {
     @PostMapping("/createToDo")
     public ResponseEntity<ToDoResponse> createToDo(@RequestBody ToDoRequest request, Principal principal) {
         String username = principal.getName();
-        User user = userRepository.findByUsername(username)
+        Users user = userRepository.findByUsername(username)
                 .orElseThrow(() -> new RuntimeException("User not found"));
 
         ToDo todo = toDoService.createToDo(request, user);
@@ -51,5 +51,4 @@ public class ToDoController {
         ToDo updated = toDoService.setCompleted(id);
         return ResponseEntity.ok(updated);
     }
-
 }

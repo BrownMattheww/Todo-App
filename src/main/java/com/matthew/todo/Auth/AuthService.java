@@ -1,6 +1,6 @@
 package com.matthew.todo.Auth;
 
-import com.matthew.todo.Users.User;
+import com.matthew.todo.Users.Users;
 import com.matthew.todo.Users.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -24,7 +24,7 @@ public class AuthService {
 
         String encodedPassword = passwordEncoder.encode(password);
 
-        User user = User.builder()
+        Users user = Users.builder()
                 .username(username)
                 .password(encodedPassword)
                 .build();
@@ -42,7 +42,7 @@ public class AuthService {
     }
 
     public ResponseEntity<AuthResponseDTO> logIn(String username, String password) {
-        User loggingIn = userRepository.findByUsername(username)
+        Users loggingIn = userRepository.findByUsername(username)
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.UNAUTHORIZED));
 
         if(!passwordEncoder.matches(password, loggingIn.getPassword())){

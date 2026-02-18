@@ -17,7 +17,7 @@ public class AuthController {
         return authService.signUp(username,password);
     }
 
-    @GetMapping("/logIn")
+    @PostMapping("/login")
     public ResponseEntity<AuthResponseDTO> logIn(@RequestParam String username, @RequestParam String password){
         return authService.logIn(username,password);
     }

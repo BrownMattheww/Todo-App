@@ -1,6 +1,6 @@
 package com.matthew.todo.ToDo;
 
-import com.matthew.todo.Users.User;
+import com.matthew.todo.Users.Users;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -17,11 +17,11 @@ public class ToDoService {
 
     private final ToDoRepository toDoRepository;
 
-    public List<ToDo> getToDoByUser(User user){
+    public List<ToDo> getToDoByUser(Users user){
         return toDoRepository.findByUser(user);
     }
 
-    public ToDo createToDo(ToDoRequest toDoRequest, User user){
+    public ToDo createToDo(ToDoRequest toDoRequest, Users user){
         ToDo todo = new ToDo();
 
         todo.setTitle(toDoRequest.getTitle());

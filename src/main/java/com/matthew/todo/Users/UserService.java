@@ -16,7 +16,7 @@ public class UserService {
     private final UserRepository userRepository;
 
     public void deleteUser(Long id){
-        User user = userRepository.findById(id)
+        Users user = userRepository.findById(id)
                         .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "User could not be found with id  + id"));
         userRepository.delete(user);
     }

@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { Link } from "react-router-dom";
 
 export default function SignUp() {
     const [username, setUsername] = useState("");
@@ -8,6 +9,7 @@ export default function SignUp() {
     async function signUp(e) {
         e.preventDefault();
 
+        //Error handling
         if (username.length < 6) {
         alert("Username must be at least 7 characters long");
         return;
@@ -18,6 +20,8 @@ export default function SignUp() {
         }
 
         try {
+
+            //Attempting logon
             const params = new URLSearchParams({ username, password });
             const response = await fetch(`${url}?${params.toString()}`, {
                 method: "POST"
@@ -25,6 +29,7 @@ export default function SignUp() {
 
             const data = await response.json();
             console.log(data);
+
         } catch (error) {
             console.error("Error:", error);
         }
@@ -32,11 +37,27 @@ export default function SignUp() {
 
     return (
         <div>
-        <h1>Poop up page</h1>
+        <h1>Sign up page</h1>
             <form onSubmit={signUp}>
-                <input type="text" name="Username" id="username" onChange={(e) => setUsername(e.target.value) } />
-                <input type="password" name="Password" id="password" onChange={(e) => setPassword(e.target.value)}/>
+                <input 
+                    type="text" 
+                    name="Username" 
+                    id="username" 
+                    value={username}
+                    onChange={(e) => setUsername(e.target.value) } />
+
+                <input 
+                    type="password" 
+                    name="Password" 
+                    id="password" 
+                    value={password}
+                    onChange={(e) => setPassword(e.target.value)}/>
+
                 <button type="submit">Submit</button>
+
+                <Link to="/log-in">
+                    If you already have an account, click here
+                </Link>
             </form>
         </div>
     )

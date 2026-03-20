@@ -8,48 +8,51 @@ export default function CreateToDo(){
     const url = "http://localhost:8080/todo/createToDo"
 
     async function sendPayload(e) {
-        e.preventDefault();
+    e.preventDefault();
 
-        if(!title){
+    if(!title){
         alert("Please ensure a title is set")
         return
-        }
-        if(!date){
+    }
+    if(!date){
         alert("please ensure a date is set")
         return;
-        }
-
-        try {
-            const payload = {
-                "title": title,
-                "description": description,
-                "completeBy": date
-            }
-            
-
-            const token = localStorage.getItem("token");
-
-            const response = await fetch(url, {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json",
-                    "Authorization": `Bearer ${token}`
-                },
-                body: JSON.stringify(payload)
-            });
-
-            //Logging response
-            const data = await response.json();
-            console.log(data);
-
-            setTitle("")
-            setDescription("")
-            setDate("")
-
-        } catch(error) {
-            console.error("Error:", error);
-        }
     }
+
+    try {
+        const payload = {
+            "title": title,
+            "description": description,
+            "completeBy": date
+        }
+        
+        const token = localStorage.getItem("token");
+
+        const response = await fetch(url, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+                "Authorization": `Bearer ${token}`
+            },
+            body: JSON.stringify(payload)
+        });
+
+        if (!response.ok) {
+            console.error("Request failed:", response.status, response.statusText);
+            return;
+        }
+
+        const data = await response.json();
+        console.log(data);
+
+        setTitle("")
+        setDescription("")
+        setDate("")
+
+    } catch(error) {
+        console.error("Error:", error);
+    }
+}
 
     return(
         <div>
@@ -63,7 +66,7 @@ export default function CreateToDo(){
                     onChange={(e) => setTitle(e.target.value)}/>
 
                 <input 
-                    type="date" 
+                    type="datetime-local" 
                     name="date" 
                     id="date" 
                     value={date}

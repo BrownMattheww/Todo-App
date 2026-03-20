@@ -60,6 +60,10 @@ export default function SignUp() {
                 <Link to="/sign-up">
                     If you don't already have an account, click here
                 </Link>
+
+                <Link to="/create-todo">
+                    Make todo here
+                </Link>
             </form>
         </div>
     );

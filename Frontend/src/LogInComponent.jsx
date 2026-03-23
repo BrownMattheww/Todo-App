@@ -38,33 +38,38 @@ export default function SignUp() {
     }
 
     return (
-        <div>
-            <h1>Login Page</h1>
-            <h2>Hello, {savedUsername}</h2>
+  <div className="sign-up">
+    <h1>Login</h1>
 
-            <form onSubmit={signUp}>
-                <input 
-                    type="text" 
-                    id="username"  
-                    value={username}
-                    onChange={(e) => setUsername(e.target.value)}/>
+    <form onSubmit={signUp}>
+      
+      <div className="inputGroup">
+        <input
+          type="text"
+          required
+          value={username}
+          onChange={(e) => setUsername(e.target.value)}
+        />
+        <label>Username</label>
+      </div>
 
-                <input 
-                    type="password" 
-                    id="password" 
-                    value={password}
-                    onChange={(e) => setPassword(e.target.value)}/>
+      <div className="inputGroup">
+        <input
+          type="password"
+          required
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
+        />
+        <label>Password</label>
+      </div>
 
-                <button type="submit">Submit</button>
+      <button type="submit">Log In</button>
 
-                <Link to="/sign-up">
-                    If you don't already have an account, click here
-                </Link>
-
-                <Link to="/create-todo">
-                    Make todo here
-                </Link>
-            </form>
-        </div>
-    );
+      <Link to="/sign-up">
+        Don't have an account? <span>Sign up</span>
+      </Link>
+      
+    </form>
+  </div>
+);
 }

@@ -1,0 +1,130 @@
+@import url('https://fonts.googleapis.com/css2?family=Bungee&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&display=swap');
+
+a {
+  font-family: "Outfit", sans-serif;
+}
+.sign-up {
+    display: flex;
+    flex-direction: column;
+    justify-content: center; 
+    align-items: center;  
+    min-height: 100vh; 
+    background: linear-gradient(135deg, #eef2ff, #e0e7ff);
+    width: 100%;
+    gap: 15px;
+}
+
+.sign-up h1 {
+    font-family: "Bungee", sans-serif;
+    font-size: 48px;
+    margin-bottom: 10px;
+    letter-spacing: 2px;
+    color: #070836;
+}
+
+.sign-up form {
+    display: flex;
+    gap: 20px;
+    flex-direction: column;
+    width: 320px;
+    padding: 40px;
+    align-items: center;
+    animation: fadeIn 0.6s ease;
+
+    background: rgba(255, 255, 255, 0.6);
+    backdrop-filter: blur(10px);
+    border-radius: 20px;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.inputGroup {
+  font-family: 'Segoe UI', sans-serif;
+  margin: 1em 0 1em 0;
+  width: 100%;
+  max-width: 100%;
+  position: relative;
+}
+
+.inputGroup input {
+  padding: 14px;
+  border-radius: 12px;
+  border: 2px solid #ddd;
+  font-size: 15px;
+  transition: all 0.25s ease;
+}
+
+.inputGroup label {
+  font-size: 100%;
+  position: absolute;
+  left: 0;
+  padding: 0.8em;
+  margin-left: 0.5em;
+  pointer-events: none;
+  transition: all 0.3s ease;
+  color: rgb(100, 100, 100);
+}
+
+.inputGroup :is(input:focus, input:valid)~label {
+  transform: translateY(-50%) scale(.9);
+  margin: 0em;
+  margin-left: 1.3em;
+  padding: 0.4em;
+  background-color: white;
+  border-radius: 20px;
+}
+
+.inputGroup :is(input:focus, input:valid) {
+  border-color: #070836;
+}
+
+button {
+  width: 100%;
+  padding: 14px;
+
+  background: #070836;
+  color: white;
+
+  border: none;
+  border-radius: 12px;
+  font-weight: 600;
+
+  box-shadow: 0 10px 20px rgba(79,70,229,0.3);
+  transition: 0.25s;
+}
+
+button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 15px 25px rgba(79,70,229,0.4);
+}
+
+button:active {
+  transform: translateY(-1px);
+}
+
+.sign-up a {
+  font-family: 'Segoe UI', sans-serif;
+  font-size: 14px;
+  color: #6366f1;
+  text-decoration: none;
+  text-align: center;
+}
+
+.sign-up a span {
+  font-weight: 600;
+}
+
+.sign-up a:hover {
+  text-decoration: underline;
+}

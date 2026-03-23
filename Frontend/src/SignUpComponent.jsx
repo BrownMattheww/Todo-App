@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
+import "./SignUp.css";
 
 export default function SignUp() {
     const [username, setUsername] = useState("");
@@ -21,7 +22,6 @@ export default function SignUp() {
 
         try {
 
-            //Attempting logon
             const params = new URLSearchParams({ username, password });
             const response = await fetch(`${url}?${params.toString()}`, {
                 method: "POST"
@@ -36,29 +36,40 @@ export default function SignUp() {
     }
 
     return (
-        <div>
-        <h1>Sign up page</h1>
+        <div className="sign-up">
+            <h1>Sign up page</h1>
             <form onSubmit={signUp}>
-                <input 
-                    type="text" 
-                    name="Username" 
-                    id="username" 
-                    value={username}
-                    onChange={(e) => setUsername(e.target.value) } />
+                {/* Username Input */}
+                <div className="inputGroup">
+                    <input
+                        type="text"
+                        id="username"
+                        value={username}
+                        onChange={(e) => setUsername(e.target.value)}
+                        required
+                        autoComplete="off"
+                    />
+                    <label htmlFor="username">Username</label>
+                </div>
 
-                <input 
-                    type="password" 
-                    name="Password" 
-                    id="password" 
-                    value={password}
-                    onChange={(e) => setPassword(e.target.value)}/>
+                <div className="inputGroup">
+                    <input
+                        type="password"
+                        id="password"
+                        value={password}
+                        onChange={(e) => setPassword(e.target.value)}
+                        required
+                        autoComplete="off"
+                    />
+                    <label htmlFor="password">Password</label>
+                </div>
 
                 <button type="submit">Submit</button>
 
                 <Link to="/log-in">
-                    If you already have an account, click here
+                    Sign in here
                 </Link>
             </form>
         </div>
-    )
+    );
 }

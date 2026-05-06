@@ -1,16 +1,17 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import Navbar from "./Navbar";
 import "./SignUp.css";
 
 export default function SignUp() {
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
+    const navigate = useNavigate();
     const url = "http://localhost:8080/auth/signup";
 
     async function signUp(e) {
         e.preventDefault();
-
-        //Error handling
+    
         if (username.length < 6) {
         alert("Username must be at least 7 characters long");
         return;
@@ -30,16 +31,24 @@ export default function SignUp() {
             const data = await response.json();
             console.log(data);
 
+            if(response.ok){
+                navigate("/log-in")
+            } else {
+                alert(data.message || "Signup failed");
+            }
+
         } catch (error) {
-            console.error("Error:", error);
+            console.error("Error: ", error);
         }
     }
 
     return (
-        <div className="sign-up">
+        <>
+            <Navbar />
+
+            <div className="sign-up">
             <h1>Sign up page</h1>
             <form onSubmit={signUp}>
-                {/* Username Input */}
                 <div className="inputGroup">
                     <input
                         type="text"
@@ -71,5 +80,6 @@ export default function SignUp() {
                 </Link>
             </form>
         </div>
+        </>
     );
 }

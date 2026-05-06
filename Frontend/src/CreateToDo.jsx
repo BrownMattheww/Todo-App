@@ -1,9 +1,14 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import Navbar from "./Navbar";
+
+
 
 export default function CreateToDo(){
     const [title, setTitle] = useState("")
     const [description, setDescription] = useState("")
     const [date, setDate] = useState("")
+    const navigate = useNavigate();
 
     const url = "http://localhost:8080/todo/createToDo"
 
@@ -48,39 +53,62 @@ export default function CreateToDo(){
         setTitle("")
         setDescription("")
         setDate("")
+        navigate("/todos")
 
     } catch(error) {
         console.error("Error:", error);
     }
 }
 
-    return(
-        <div>
-            <h1>Create to do</h1>
-            <form onSubmit={sendPayload}>
-                <input
-                    type="text" 
-                    name="title" 
-                    id="title" 
-                    value={title}
-                    onChange={(e) => setTitle(e.target.value)}/>
+   return (
 
-                <input 
-                    type="datetime-local" 
-                    name="date" 
-                    id="date" 
-                    value={date}
-                    onChange={(e) => setDate(e.target.value)}/>
+    <>
 
-                <input
-                    type="text" 
-                    name="description" 
-                    id="description" 
-                    value={description}
-                    onChange={(e) => setDescription(e.target.value)} />
+    <Navbar /> 
 
-                <button type="submit">Submit</button>        
-            </form>
+    <div className="sign-up">
+      <h1>Create To Do</h1>
+
+      <form onSubmit={sendPayload}>
+        
+        <div className="inputGroup">
+          <input
+            type="text"
+            name="title"
+            required
+            placeholder=" "
+            value={title}
+            onChange={(e) => setTitle(e.target.value)}
+          />
+          <label>Title</label>
         </div>
-    )
+
+        <div className="inputGroup">
+          <input
+            type="datetime-local"
+            name="date"
+            required
+            placeholder=" "
+            value={date}
+            onChange={(e) => setDate(e.target.value)}
+          />
+          <label>Complete By</label>
+        </div>
+
+        <div className="inputGroup">
+          <input
+            type="text"
+            name="description"
+            placeholder=" "
+            value={description}
+            onChange={(e) => setDescription(e.target.value)}
+          />
+          <label>Description</label>
+        </div>
+
+        <button type="submit">Create Task</button>
+      </form>
+    </div>
+    </>
+  );
 }

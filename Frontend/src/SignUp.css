@@ -9,7 +9,7 @@ a {
     flex-direction: column;
     justify-content: center; 
     align-items: center;  
-    min-height: 100vh; 
+    min-height: 90vh; 
     background: linear-gradient(135deg, #eef2ff, #e0e7ff);
     width: 100%;
     gap: 15px;
@@ -59,6 +59,7 @@ a {
 
 .inputGroup input {
   padding: 14px;
+  width: 100%;
   border-radius: 12px;
   border: 2px solid #ddd;
   font-size: 15px;
@@ -76,9 +77,9 @@ a {
   color: rgb(100, 100, 100);
 }
 
-.inputGroup :is(input:focus, input:valid)~label {
+.inputGroup input:focus ~ label,
+.inputGroup input:not(:placeholder-shown) ~ label {
   transform: translateY(-50%) scale(.9);
-  margin: 0em;
   margin-left: 1.3em;
   padding: 0.4em;
   background-color: white;
@@ -127,4 +128,56 @@ button:active {
 
 .sign-up a:hover {
   text-decoration: underline;
+}
+
+.inputGroup input[type="datetime-local"] ~ label {
+  transform: translateY(-50%) scale(.9);
+  margin-left: 1.3em;
+  padding: 0.4em;
+  background-color: white;
+  border-radius: 20px;
+}
+
+.inputGroup input,
+.inputGroup input[type="datetime-local"],
+button {
+  padding: 14px;
+  border-radius: 12px;
+  font-size: 15px;
+}
+
+nav,
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px 40px;
+  width: 100%;
+  position: sticky;
+  top: 0;
+  background: linear-gradient(135deg, #eef2ff, #e0e7ff);
+  z-index: 1000;
+}
+
+.logo {
+  font-family: "Bungee", sans-serif;
+  font-size: 24px;
+  color: #070836;
+  margin: 0;
+}
+
+.nav-links {
+  display: flex;
+  gap: 25px;
+}
+
+.nav-links a {
+  font-family: "Outfit", sans-serif;
+  color: #070836;
+  text-decoration: none;
+  font-weight: 500;
+}
+
+#createButton {
+  width: 320px;
 }

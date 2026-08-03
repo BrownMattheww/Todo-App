@@ -68,3 +68,17 @@ Through this project I gained experience with:
 ### Deployment
 - Docker
 - Environment variables
+
+## Screenshots
+
+### Login
+
+![Login Page](images/login.png)
+
+### Todo List
+
+![Todo List](images/list.png)
+
+### Create Todo
+
+![Create Todo](images/create.png)

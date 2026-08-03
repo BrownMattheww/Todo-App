@@ -9,18 +9,27 @@ The database is not directly accessible to users. All communication with the dat
 The application follows a client-server architecture:
 
 ```
-              React Frontend
-                    |
-                    v
-          Spring Boot REST API
-              (Docker)
-                    |
-                    v
-        Spring Security + JWT
-                    |
-                    v
-          PostgreSQL Database
-        (Private Raspberry Pi)
+User
+ |
+ v
+React Frontend
+ |
+ |  Authenticated API Requests
+ v
+Spring Boot REST API
+ |
+ +----------------------+
+ |                      |
+ v                      v
+Spring Security        Spring Data JPA
+ |
+ v
+JWT Authentication
+ |
+ v
+PostgreSQL Database
+(Private Raspberry Pi)
+
 ```
 
 ## What I Learned
